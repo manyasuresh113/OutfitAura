@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { ThemedText } from './themed-text';
 import { ThemedView } from './themed-view';
 
-import { Spacing } from '../../constants/auraTheme';
+import { Spacing } from '../constants/auraTheme';
 
 type HintRowProps = {
   title?: string;

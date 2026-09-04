@@ -4,7 +4,7 @@
  */
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import { Colors } from '../../constants/auraTheme';
+import { Colors } from '../constants/auraTheme';
 
 export function useTheme() {
   const scheme = useColorScheme();

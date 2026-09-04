@@ -5,7 +5,7 @@ import { StyleSheet, useColorScheme } from 'react-native';
 import { ThemedText } from './themed-text';
 import { ThemedView } from './themed-view';
 
-import { Spacing } from '../../constants/auraTheme';
+import { Spacing } from '../constants/auraTheme';
 
 export function WebBadge() {
   const scheme = useColorScheme();

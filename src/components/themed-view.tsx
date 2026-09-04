@@ -1,7 +1,7 @@
 import { View, type ViewProps } from 'react-native';
 
 import { useTheme } from '@/hooks/use-theme';
-import { ThemeColor } from '../../constants/auraTheme';
+import { ThemeColor } from '../constants/auraTheme';
 
 export type ThemedViewProps = ViewProps & {
   lightColor?: string;
