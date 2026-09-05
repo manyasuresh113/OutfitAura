@@ -1691,4 +1691,4 @@ const styles = StyleSheet.create({
     height: 30,
     backgroundColor: 'rgba(255,255,255,0.15)',
   },
-});
+}); 
