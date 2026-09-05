@@ -14,7 +14,7 @@ import {
     AuraColors,
     AuraRadius,
     AuraShadow,
-    AuraSpacing
+    AuraSpacing,
 } from '../../constants/auraTheme';
 
 const HERO_IMAGE =
@@ -34,6 +34,7 @@ type FeatureCardProps = {
   description: string;
   image: string;
   icon: keyof typeof Ionicons.glyphMap;
+  action: string;
   onPress: () => void;
 };
 
@@ -42,6 +43,7 @@ function FeatureCard({
   description,
   image,
   icon,
+  action,
   onPress,
 }: FeatureCardProps) {
   return (
@@ -52,33 +54,54 @@ function FeatureCard({
         pressed && styles.pressed,
       ]}
     >
-      <Image source={{ uri: image }} style={styles.featureImage} />
+      {/* IMAGE */}
+      <Image
+        source={{ uri: image }}
+        style={styles.featureImage}
+      />
 
+      {/* DARK GRADIENT-LIKE OVERLAY */}
       <View style={styles.featureOverlay} />
 
-      <View style={styles.featureTop}>
-        <View style={styles.featureIcon}>
-          <Ionicons
-            name={icon}
-            size={19}
-            color={AuraColors.white}
-          />
-        </View>
-
-        <View style={styles.arrowCircle}>
-          <Ionicons
-            name="arrow-forward"
-            size={18}
-            color={AuraColors.navy}
-          />
-        </View>
+      {/* ICON */}
+      <View style={styles.featureIcon}>
+        <Ionicons
+          name={icon}
+          size={19}
+          color={AuraColors.white}
+        />
       </View>
 
+      {/* ARROW */}
+      <View style={styles.arrowCircle}>
+        <Ionicons
+          name="arrow-forward"
+          size={17}
+          color={AuraColors.navy}
+        />
+      </View>
+
+      {/* CONTENT */}
       <View style={styles.featureContent}>
-        <Text style={styles.featureTitle}>{title}</Text>
+        <Text style={styles.featureTitle}>
+          {title}
+        </Text>
+
         <Text style={styles.featureDescription}>
           {description}
         </Text>
+
+        <View style={styles.actionRow}>
+          <Text style={styles.actionText}>
+            {action}
+          </Text>
+
+          <Ionicons
+            name="arrow-forward"
+            size={15}
+            color={AuraColors.white}
+          />
+        </View>
       </View>
     </Pressable>
   );
@@ -91,10 +114,14 @@ export default function HomeTab() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        {/* HEADER */}
+        {/* ================= HEADER ================= */}
+
         <View style={styles.header}>
           <View>
-            <Text style={styles.brand}>OUTFITAURA</Text>
+            <Text style={styles.brand}>
+              OUTFITAURA
+            </Text>
+
             <Text style={styles.tagline}>
               Your style, made smarter.
             </Text>
@@ -112,63 +139,66 @@ export default function HomeTab() {
           </Pressable>
         </View>
 
-{/* HERO */}
-<View style={styles.heroCard}>
-  <Image
-    source={{ uri: HERO_IMAGE }}
-    style={styles.heroImage}
-  />
+        {/* ================= HERO ================= */}
 
-  {/* Dark image overlay */}
-  <View style={styles.heroOverlay} />
+        <View style={styles.heroCard}>
+          <Image
+            source={{ uri: HERO_IMAGE }}
+            style={styles.heroImage}
+          />
 
-  {/* AI badge */}
-  <View style={styles.heroBadge}>
-    <Ionicons
-      name="sparkles"
-      size={13}
-      color={AuraColors.goldLight}
-    />
-    <Text style={styles.heroBadgeText}>
-      AI STYLE ASSISTANT
-    </Text>
-  </View>
+          <View style={styles.heroOverlay} />
 
-  {/* Hero text */}
-  <View style={styles.heroText}>
-    <Text style={styles.heroTitle}>
-      Dress with{'\n'}confidence.
-    </Text>
+          {/* AI BADGE */}
+          <View style={styles.heroBadge}>
+            <Ionicons
+              name="sparkles"
+              size={13}
+              color={AuraColors.goldLight}
+            />
 
-    <Text style={styles.heroSubtitle}>
-      Let your personal AI stylist{'\n'}
-      make every outfit count.
-    </Text>
-  </View>
+            <Text style={styles.heroBadgeText}>
+              AI STYLE ASSISTANT
+            </Text>
+          </View>
 
-  {/* Aura Score */}
-  <View style={styles.scoreCard}>
-    <View style={styles.scoreIcon}>
-      <Ionicons
-        name="sparkles"
-        size={15}
-        color={AuraColors.gold}
-      />
-    </View>
+          {/* HERO TEXT */}
+          <View style={styles.heroText}>
+            <Text style={styles.heroTitle}>
+              Dress with{'\n'}confidence.
+            </Text>
 
-    <View>
-      <Text style={styles.scoreLabel}>
-        AURA SCORE
-      </Text>
+            <Text style={styles.heroSubtitle}>
+              Let your personal AI stylist
+              {'\n'}
+              make every outfit count.
+            </Text>
+          </View>
 
-      <Text style={styles.scoreValue}>
-        9.4
-      </Text>
-    </View>
-  </View>
-</View>
+          {/* AURA SCORE */}
+          <View style={styles.scoreCard}>
+            <View style={styles.scoreIcon}>
+              <Ionicons
+                name="sparkles"
+                size={15}
+                color={AuraColors.gold}
+              />
+            </View>
 
-        {/* SECTION TITLE */}
+            <View>
+              <Text style={styles.scoreLabel}>
+                AURA SCORE
+              </Text>
+
+              <Text style={styles.scoreValue}>
+                9.4
+              </Text>
+            </View>
+          </View>
+        </View>
+
+        {/* ================= MAIN SECTION ================= */}
+
         <View style={styles.sectionHeader}>
           <View>
             <Text style={styles.sectionEyebrow}>
@@ -180,87 +210,55 @@ export default function HomeTab() {
             </Text>
           </View>
 
-          <Ionicons
-            name="sparkles"
-            size={23}
-            color={AuraColors.purple}
-          />
+          <View style={styles.sparkleCircle}>
+            <Ionicons
+              name="sparkles"
+              size={17}
+              color={AuraColors.purple}
+            />
+          </View>
         </View>
 
-        {/* MAIN FEATURES */}
+        {/* ================= CORRECT ================= */}
+
         <FeatureCard
           title="Correct My Outfit"
           description="Analyze your current look and make it better."
+          action="Analyze my look"
           image={CORRECT_IMAGE}
           icon="scan-outline"
           onPress={() => router.push('/correct')}
         />
 
+        {/* ================= CREATE ================= */}
+
         <FeatureCard
           title="Create My Outfit"
-          description="Build a personalized look from scratch with AI."
+          description="Build a personalized look with AI."
+          action="Create a look"
           image={CREATE_IMAGE}
           icon="color-wand-outline"
           onPress={() => router.push('/create')}
         />
 
+        {/* ================= AURAMATCH ================= */}
+
         <FeatureCard
           title="AuraMatch"
-          description="Discover the missing pieces in your personal style."
+          description="Discover what's missing from your style."
+          action="Find my style gaps"
           image={AURA_IMAGE}
           icon="sparkles-outline"
           onPress={() => router.push('/auramatch')}
         />
 
-        {/* QUICK ACCESS */}
-        <View style={styles.quickHeader}>
-          <Text style={styles.quickTitle}>Quick access</Text>
-        </View>
+        {/* ================= AI MESSAGE ================= */}
 
-        <View style={styles.quickGrid}>
-          <Pressable
-            style={styles.quickCard}
-            onPress={() => router.push('/wardrobe')}
-          >
-            <View style={styles.quickIcon}>
-              <Ionicons
-                name="shirt-outline"
-                size={21}
-                color={AuraColors.purple}
-              />
-            </View>
-
-            <Text style={styles.quickCardTitle}>Wardrobe</Text>
-            <Text style={styles.quickCardSubtitle}>
-              Your digital closet
-            </Text>
-          </Pressable>
-
-          <Pressable
-            style={styles.quickCard}
-            onPress={() => router.push('/saved')}
-          >
-            <View style={styles.quickIcon}>
-              <Ionicons
-                name="heart-outline"
-                size={21}
-                color={AuraColors.purple}
-              />
-            </View>
-
-            <Text style={styles.quickCardTitle}>Saved</Text>
-            <Text style={styles.quickCardSubtitle}>
-              Your favorite looks
-            </Text>
-          </Pressable>
-        </View>
-
-        {/* AI MESSAGE */}
         <View style={styles.aiCard}>
           <View style={styles.aiIcon}>
             <Ionicons
               name="sparkles"
-              size={20}
+              size={19}
               color={AuraColors.white}
             />
           </View>
@@ -277,9 +275,13 @@ export default function HomeTab() {
           </View>
         </View>
 
-        {/* FOOTER */}
+        {/* ================= FOOTER ================= */}
+
         <View style={styles.footer}>
-          <Text style={styles.footerBrand}>OUTFITAURA</Text>
+          <Text style={styles.footerBrand}>
+            OUTFITAURA
+          </Text>
+
           <Text style={styles.footerTagline}>
             Your style, made smarter.
           </Text>
@@ -300,6 +302,8 @@ const styles = StyleSheet.create({
     paddingTop: AuraSpacing.md,
     paddingBottom: 120,
   },
+
+  /* ================= HEADER ================= */
 
   header: {
     flexDirection: 'row',
@@ -331,32 +335,35 @@ const styles = StyleSheet.create({
     ...AuraShadow.soft,
   },
 
+  /* ================= HERO ================= */
+
   heroCard: {
-    height: 400,
+    height: 390,
     borderRadius: AuraRadius.card,
     overflow: 'hidden',
     marginBottom: AuraSpacing.xxxl,
+    backgroundColor: AuraColors.navy,
     ...AuraShadow.card,
   },
 
   heroImage: {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  width: '100%',
-  height: '100%',
-},
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+  },
 
   heroOverlay: {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: 'rgba(18, 22, 74, 0.38)',
-},
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(18, 22, 74, 0.38)',
+  },
 
   heroBadge: {
     position: 'absolute',
@@ -368,7 +375,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: AuraRadius.pill,
-    backgroundColor: 'rgba(18, 22, 74, 0.72)',
+    backgroundColor: 'rgba(18, 22, 74, 0.78)',
+    zIndex: 5,
   },
 
   heroBadgeText: {
@@ -383,14 +391,14 @@ const styles = StyleSheet.create({
     left: 22,
     bottom: 30,
     zIndex: 10,
-    },
+  },
 
   heroTitle: {
     color: AuraColors.white,
-    fontSize: 38,
-    lineHeight: 42,
+    fontSize: 37,
+    lineHeight: 41,
     fontWeight: '800',
-    letterSpacing: -0.8,
+    letterSpacing: -0.7,
   },
 
   heroSubtitle: {
@@ -401,10 +409,10 @@ const styles = StyleSheet.create({
   },
 
   scoreCard: {
-    zIndex: 20,
     position: 'absolute',
     right: 18,
     bottom: 18,
+    zIndex: 20,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 9,
@@ -412,6 +420,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 10,
     borderRadius: 17,
+    ...AuraShadow.soft,
   },
 
   scoreIcon: {
@@ -437,10 +446,12 @@ const styles = StyleSheet.create({
     marginTop: 1,
   },
 
+  /* ================= SECTION ================= */
+
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-end',
+    alignItems: 'center',
     marginBottom: AuraSpacing.lg,
   },
 
@@ -454,51 +465,69 @@ const styles = StyleSheet.create({
 
   sectionTitle: {
     color: AuraColors.text,
-    fontSize: 22,
-    lineHeight: 28,
+    fontSize: 21,
+    lineHeight: 27,
     fontWeight: '700',
   },
 
+  sparkleCircle: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: AuraColors.surfacePurple,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  /* ================= FEATURE CARDS ================= */
+
   featureCard: {
-    height: 220,
+    height: 158,
     borderRadius: AuraRadius.card,
     overflow: 'hidden',
-    marginBottom: AuraSpacing.lg,
+    marginBottom: AuraSpacing.md,
     backgroundColor: AuraColors.navy,
     ...AuraShadow.card,
   },
 
   featureImage: {
-    ...StyleSheet.absoluteFillObject,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
   },
 
   featureOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(18, 22, 74, 0.42)',
-  },
-
-  featureTop: {
     position: 'absolute',
-    top: 16,
-    left: 16,
-    right: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(18, 22, 74, 0.52)',
   },
 
   featureIcon: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
-    backgroundColor: 'rgba(18,22,74,0.7)',
+    position: 'absolute',
+    top: 14,
+    left: 14,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(18,22,74,0.75)',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   arrowCircle: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
+    position: 'absolute',
+    top: 14,
+    right: 14,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     backgroundColor: AuraColors.white,
     alignItems: 'center',
     justifyContent: 'center',
@@ -506,73 +535,42 @@ const styles = StyleSheet.create({
 
   featureContent: {
     position: 'absolute',
-    left: 18,
-    right: 18,
-    bottom: 18,
+    left: 16,
+    right: 16,
+    bottom: 14,
   },
 
   featureTitle: {
     color: AuraColors.white,
-    fontSize: 24,
+    fontSize: 21,
     fontWeight: '700',
-    marginBottom: 5,
+    marginBottom: 3,
   },
 
   featureDescription: {
-    color: 'rgba(255,255,255,0.84)',
-    fontSize: 13,
-    lineHeight: 19,
+    color: 'rgba(255,255,255,0.86)',
+    fontSize: 12,
+    lineHeight: 17,
+    maxWidth: '78%',
   },
 
-  quickHeader: {
-    marginTop: AuraSpacing.lg,
-    marginBottom: AuraSpacing.md,
-  },
-
-  quickTitle: {
-    color: AuraColors.text,
-    fontSize: 19,
-    fontWeight: '700',
-  },
-
-  quickGrid: {
+  actionRow: {
     flexDirection: 'row',
-    gap: AuraSpacing.md,
-  },
-
-  quickCard: {
-    flex: 1,
-    backgroundColor: AuraColors.white,
-    borderRadius: AuraRadius.large,
-    padding: AuraSpacing.lg,
-    ...AuraShadow.soft,
-  },
-
-  quickIcon: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    backgroundColor: AuraColors.surfacePurple,
     alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: AuraSpacing.md,
+    gap: 6,
+    marginTop: 7,
   },
 
-  quickCardTitle: {
-    color: AuraColors.text,
-    fontSize: 16,
+  actionText: {
+    color: AuraColors.white,
+    fontSize: 12,
     fontWeight: '700',
   },
 
-  quickCardSubtitle: {
-    color: AuraColors.textSecondary,
-    fontSize: 11,
-    lineHeight: 16,
-    marginTop: 4,
-  },
+  /* ================= AI MESSAGE ================= */
 
   aiCard: {
-    marginTop: AuraSpacing.xl,
+    marginTop: AuraSpacing.md,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: AuraColors.navy,
@@ -607,9 +605,11 @@ const styles = StyleSheet.create({
     lineHeight: 17,
   },
 
+  /* ================= FOOTER ================= */
+
   footer: {
     alignItems: 'center',
-    marginTop: 38,
+    marginTop: 32,
     paddingBottom: 10,
   },
 
